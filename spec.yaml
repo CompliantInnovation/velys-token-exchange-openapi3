@@ -1,0 +1,91 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+#servers:
+#  - description: SwaggerHub API Auto Mocking
+#    url: https://virtserver.swaggerhub.com/DocSpera/patient-survey-api/1.0.0
+info:
+  description: Velys Token Exchange API
+  version: "1.0.0-alpha1"
+  title: Velys Token Exchange API
+  x-logo:
+    url: https://docspera.com/assets/D3/pic/Logo-Full-White-Padded.png
+    backgroundColor: "#0096FA"
+    href: https://docspera.com
+  contact:
+    email: luca@docspera.com
+  license:
+    name: Proprietary
+tags:
+  - name: authenticated
+    x-displayName: "Authenticated Velys Okta Session"
+    description: |
+      apis available to an authenticated Velys Okta session
+paths:
+  /api/v1/velys/session:
+    post:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - authenticated
+      summary: Create a link to a new DocSpera session
+      operationId: createSession
+      responses:
+        '200':
+          description: signedurl response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - uri
+                  - expires
+                properties:
+                  uri:
+                    type: string
+                    format: uri
+                    description: signed url with expiration to launch into an authenticated docspera session
+                  expires:
+                    type: integer
+                    format: int64
+                    description: time in seconds that the uri will live for. This is typically 3600 (1 hour)
+              example:
+                uri: "https://docspera.com/json/sesion/new?signature=signature&expires=3600"
+                expires: 3600
+        '401':
+          description: unauthenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: unauthenticated
+                description: no authentication mechanism provided
+        '403':
+          description: forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: unauthorized
+                description: authentication mechanism is invalid or expired
+components:
+  securitySchemes:
+    BearerAuth:
+      description: Okta JWT bearer token
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - description
+      properties:
+        error:
+          type: string
+          description: error type
+        description:
+          type: string
+          description: error_message
