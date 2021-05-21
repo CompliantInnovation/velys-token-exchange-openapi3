@@ -1,8 +1,8 @@
 openapi: 3.0.0
 # Added by API Auto Mocking Plugin
-#servers:
-#  - description: SwaggerHub API Auto Mocking
-#    url: https://virtserver.swaggerhub.com/DocSpera/patient-survey-api/1.0.0
+servers:
+  - description: Dev Environment
+    url: https://velys-dev.d4.docvisor.com
 info:
   description: Velys Token Exchange API
   version: "1.0.0-alpha1"
