@@ -2,9 +2,9 @@ openapi: 3.0.0
 # Added by API Auto Mocking Plugin
 servers:
   - description: Dev Environment
-    url: https://velys-dev.d4.docvisor.com
+    url: https://dev.velys.docharp.com
   - description: SIT Environment
-    url: https://velys-sit.d4.docvisor.com
+    url: https://sit.velys.docharp.com
   - description: QA Environment
     url: https://velys-qa.d4.docvisor.com
   - description: Prod Environment
