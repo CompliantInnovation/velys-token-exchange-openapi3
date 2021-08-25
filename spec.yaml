@@ -3,6 +3,12 @@ openapi: 3.0.0
 servers:
   - description: Dev Environment
     url: https://velys-dev.d4.docvisor.com
+  - description: SIT Environment
+    url: https://velys-sit.d4.docvisor.com
+  - description: QA Environment
+    url: https://velys-qa.d4.docvisor.com
+  - description: Prod Environment
+    url: https://carecoordination.velys.jnj
 info:
   description: Velys Token Exchange API
   version: "1.0.0-alpha1"
@@ -29,6 +35,23 @@ paths:
         - authenticated
       summary: Create a link to a new DocSpera session
       operationId: createSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                target:
+                  type: string
+                  description: |
+                    target resource to redirect to once the session has been activated.
+                    Specifically requested resources are as follows:
+                     * Calendar: "patientpath::calendar"
+                     * Messages: "patientpath::messages"
+                     * Contacts: "patientpath::contacts"
+                     * Profile: "patientpath::profile"
+                     * Admin Settings: "patientpath::administratorsprefs"
+                  example: "patientpath::messages"
       responses:
         '200':
           description: signedurl response
