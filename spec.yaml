@@ -46,11 +46,21 @@ paths:
                   description: |
                     target resource to redirect to once the session has been activated.
                     Specifically requested resources are as follows:
-                     * Calendar: "patientpath::calendar"
-                     * Messages: "patientpath::messages"
-                     * Contacts: "patientpath::contacts"
-                     * Profile: "patientpath::profile"
-                     * Admin Settings: "patientpath::administratorsprefs"
+                     * Calendar	patientpath::calendar
+                     * Messages	patientpath::messages
+                     * Contacts	patientpath::contacts
+                     * Profile	patientpath::profile
+                     * Admin Settings	patientpath::administratorsprefs
+                     * Smart Scheduling	patientpath::smartscheduling
+                     * View and Add Notes	patientpath::<event_id>::notes
+                     * View and Add Team Members	patientpath::<event_id>::hcp
+                     * Open HCP Group Message	patientpath::<event_id>::messages
+                     * View Intake Form	patientpath::<patient_id>::velys-intake::view
+                     * Edit Intake Form	patientpath::<patient_id>::velys-intake::edit
+                     * View and Add Equipment	patientpath::<event_id>::equipment
+                     * Edit HCP Checklist	patientpath::<event_id>::checklist
+                     * View, Upload and Edit Files	patientpath::<event_id>::cabinet
+                     * View, Add and Edit Insurance	patientpath::<patient_id>::insurance
                   example: "patientpath::messages"
       responses:
         '200':
